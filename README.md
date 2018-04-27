@@ -38,7 +38,7 @@ CIDS_CODEBASE=http://s10221.wuppertal-intra.de/cismet/cidsDistribution
 
 ### `volume/local` and `volume/private` directories
 
-WARNING: ***Don't forget to add `volume/private/*` to your the `.gitignore` file of your cidsDistribution if you don't wan't to share your private secrets whit the whole world !!!***
+WARNING: ***Don't forget to add `volume/private/*` to the `.gitignore` file of your cidsDistribution if you don't wan't to share your private secrets whit the whole world !!!***
 
 To build/update the cidsDistribution the tools need to add 2 volumes to the temporary container:
 * `volume/local` containing the local Jars of the cidsDistribution you are building/updating
