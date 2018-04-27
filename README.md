@@ -24,7 +24,7 @@ docker run --rm -it \
 ```
 If no command and params are given, you get the usage instructions (available commands / parameters).
 
-### .env file
+### `.env` file
 The cidsDistribution tools need an `.env` that defines some variables telling the tools which name and tag the image should get, and also which distribution it should build with which extension and which codebase. An exemple:
 ```
 IMAGE_NAME=reg.cismet.de/wupp/cids-distribution
@@ -35,6 +35,14 @@ CIDS_DISTRIBUTION=cids-distribution-wuppertal
 CIDS_EXTENSION=WuNDa
 CIDS_CODEBASE=http://s10221.wuppertal-intra.de/cismet/cidsDistribution
 ```
+
+### `volume/local` and `volume/private` directories
+
+WARNING: ***Don't forget to add `volume/private/*` to your the `.gitignore` file of your cidsDistribution if you don't wan't to share your private secrets whit the whole world !!!***
+
+To build/update the cidsDistribution the tools need to add 2 volumes to the temporary container:
+* `volume/local` containing the local Jars of the cidsDistribution you are building/updating
+* `volume/private` containing the secrets needed to build/update the image like the `keystore` and `keystore.pwd` (only contains the keystore password) for signing the jars and `server.pwd` (contains to lines: `SERVER_USERNAME=<username>` and `SERVER_PASSWORD=<password>`) for the login credentials of the repository.
 
 ### available commands / parameters
 * **`prepareExt <tag>`**: runs a temporary container of an existing docker cidsDistribution image with the given `<tag>` and copies all the `/cidsDistribution/lib/ext`-Jars of the container to the `volume/ext` directory of the host. These jars are copied into the `/cidsDistribution/lib/ext` directory while building the image.
