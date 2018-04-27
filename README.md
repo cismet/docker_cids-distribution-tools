@@ -11,6 +11,19 @@ This image uses [docker in docker](https://hub.docker.com/_/docker/). That's why
 You also have to add your `$HOME` directory as a volume to `/root` if you need access to your docker config file (f.e. login credentials for your own repository).
 The path of the directory of your distribution have to be added as a volume (same path inside the container than the hosts path). Additionaly this path has to be set as the environment variable `CIDS_DISTRIBUTION_DIR`.
 
+### example
+An example if using it from inside the cids-distribution directory (`pwd` equals the directory of the distribution):
+```sh
+docker run --rm -it \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v $HOME:/root:ro \
+  -v ${pwd}:${pwd}:ro \
+  -e CIDS_DISTRIBUTION_DIR=${pwd} \
+  reg.cismet.de/abstract/cids-distribution-tools:18.04.1 \
+  <command> <params>
+```
+If no command and params are given, you get the usage instructions (available commands / parameters).
+
 ### .env file
 The cidsDistribution tools need an `.env` that defines some variables telling the tools which name and tag the image should get, and also which distribution it should build with which extension and which codebase. An exemple:
 ```
@@ -27,19 +40,6 @@ CIDS_CODEBASE=http://s10221.wuppertal-intra.de/cismet/cidsDistribution
 * **`prepareExt <tag>`**: runs a temporary container of an existing docker cidsDistribution image with the given `<tag>` and copies all the `/cidsDistribution/lib/ext`-Jars of the container to the `volume/ext` directory of the host. These jars are copied into the `/cidsDistribution/lib/ext` directory while building the image.
 * **`buildImage`**: builds the docker cidsDistribution image.
 * **`updateDistribution <release>`**: runs a temporary container that builds/updates the distribution in the given `<release>` version, and commits the changes to the image.
-
-### example
-An example if using it from inside the cids-distribution directory (`pwd` equals the directory of the distribution):
-```sh
-docker run --rm -it \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v $HOME:/root:ro \
-  -v ${pwd}:${pwd}:ro \
-  -e CIDS_DISTRIBUTION_DIR=${pwd} \
-  reg.cismet.de/abstract/cids-distribution-tools:18.04.1 \
-  <command> <params>
-```
-If no command and params are given, you get the usage instructions (available commands / parameters).
 
 ## Who uses it ?
 Examples of distributions using these tools: 
