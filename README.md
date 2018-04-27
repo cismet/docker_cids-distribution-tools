@@ -16,7 +16,7 @@ There are some prerequisites for using the cidsDistribution tools. In your cidsD
 * a `.env` file containing some variables for the build/update of the cidsDistribution image.
 * a `volume/local` directory containing all the local jars of your cidsDistribution.
 * a `volume/private` directory containing some needed secrets.
-* a `Dockerfile` file...
+* a `Dockerfile` file.
 
 ---
 
