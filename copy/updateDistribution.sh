@@ -5,13 +5,14 @@ if [ -z "${GIT_DISTRIBUTION_RELEASE}" ]; then echo "argument for release-version
 if [ -f "${DIR}/.env" ]; then export $(cat ${DIR}/.env | grep -v '^#' | xargs); else echo ".env file is missing"; exit 1; fi
 #---
 
-IMAGE_TAG=${IMAGE_TAG_PREFIX}-${IMAGE_VERSION}
+if [ -z "${IMAGE_TAG_PREFIX}" ]; then IMAGE_TAG=${IMAGE_VERSION}; else IMAGE_TAG=${IMAGE_TAG_PREFIX}-${IMAGE_VERSION}; fi
 IMAGE=${IMAGE_NAME}:${IMAGE_TAG}
 CONTAINER_BUILD=build_${CIDS_DISTRIBUTION}_${IMAGE_TAG_PREFIX}_${GIT_DISTRIBUTION_RELEASE}
 
 #----
 
 docker rm -f ${CONTAINER_BUILD} > /dev/null 2>&1
+
 docker run -t \
   --name ${CONTAINER_BUILD} \
   --entrypoint /entrypoint_build.sh \

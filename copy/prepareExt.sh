@@ -15,10 +15,8 @@ docker run -t \
   --name ${CONTAINER_EXT} \
   --entrypoint /bin/sh \
   --env CIDS_CODEBASE=${CIDS_CODEBASE} \
-  --volume ${DIR}/volume/ext/:/cp/ext/ \
-  --volume ${DIR}/volume/local:/cidsDistribution/lib/local${CIDS_EXTENSION} \
-  --volume ${DIR}/volume/local:/cidsDistribution/lib/local${CIDS_EXTENSION}Internet \
+  --volume ${DIR}/volume/ext/:/volume/ext/ \
   ${IMAGE} \
-  -c 'cp -v /cp/ext/*.jar /cidsDistribution/lib/ext/'
+  -c 'cp -v /cidsDistribution/lib/ext/*.jar /volume/ext/'
 
 docker rm -f ${CONTAINER_EXT} > /dev/null 2>&1
