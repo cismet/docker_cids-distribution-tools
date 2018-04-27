@@ -1,7 +1,7 @@
 # Docker - cidsDistribution tools
 
 ## What is it ?
-This image contains tools for **preparing** and **building** [cids-distribution docker images](https://github.com/cismet/docker_cids-distribution) und **updating** the distributions to a given release.
+This image contains tools for **preparing** and **building** [cidsDistribution docker images](https://github.com/cismet/docker_cids-distribution) und **updating** the distributions to a given release.
 
 ## How to build it ?
 Simply use `buildImage.sh` to build the docker image. Don't forget to modify `IMAGE_NAME` and `IMAGE_VERSION` if you whant to give your image an own name and/or version-tag.
