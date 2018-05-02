@@ -34,7 +34,7 @@ docker run -t \
       echo "# build of ${CIDS_DISTRIBUTION} (dev branch) successful"
     else
       echo "# build of ${CIDS_DISTRIBUTION} (release: ${GIT_DISTRIBUTION_RELEASE}) successful"
-      IMAGE_TAG=${IMAGE_TAG_PREFIX}_${GIT_DISTRIBUTION_RELEASE}
+      IMAGE_TAG=${IMAGE_TAG_PREFIX}-${GIT_DISTRIBUTION_RELEASE}
       docker tag ${IMAGE} ${IMAGE_NAME}:${IMAGE_TAG}
     fi
 
