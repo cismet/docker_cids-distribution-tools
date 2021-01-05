@@ -17,6 +17,7 @@ docker run -t \
   --name ${CONTAINER_BUILD} \
   --entrypoint /entrypoint_build.sh \
   --env CIDS_CODEBASE=${CIDS_CODEBASE} \
+  --env TSA_SERVER=${TSA_SERVER} \
   --volume ${DIR}/volume/private:/cidsDistribution/.private \
   --volume ${DIR}/volume/local:/cidsDistribution/lib/local${CIDS_EXTENSION} \
   --volume ${DIR}/volume/local:/cidsDistribution/lib/local${CIDS_EXTENSION}Internet \
