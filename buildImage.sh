@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IMAGE_NAME=reg.cismet.de/abstract/cids-distribution-tools
-IMAGE_VERSION=21.01.1
+IMAGE_VERSION=21.03.1
 
 # RELEASE BUILD ----------------------------------------------------------------
 docker build \
