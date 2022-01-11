@@ -37,7 +37,6 @@ docker commit \
   ${IMAGE} \
 || { echo "could not commit container ${CONTAINER_BUILD} to image ${IMAGE}" >/dev/stderr; exit $EXIT_COMMIT; }
 
-echo "####"
 if [ -z "${GIT_DISTRIBUTION_RELEASE}" ]; then
   echo "# build of ${CIDS_DISTRIBUTION} (dev branch) successful"
 else
@@ -45,6 +44,7 @@ else
   IMAGE_TAG=${IMAGE_TAG_PREFIX}-${GIT_DISTRIBUTION_RELEASE}
   docker tag ${IMAGE} ${IMAGE_NAME}:${IMAGE_TAG}
 
+  echo "####"
   echo "# you can push it to the docker registry with:"
   echo "#    docker push ${IMAGE_NAME}:${IMAGE_TAG}"
   echo "####"
