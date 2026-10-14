@@ -1,4 +1,4 @@
-FROM docker:18.04.0-ce
+FROM docker:29
 
 COPY /copy/*.sh /
 
